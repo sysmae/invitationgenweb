@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 
 class InvitationPage extends StatelessWidget {
@@ -19,6 +21,9 @@ class InvitationPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator()); // 로딩 중
+        }
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}')); // 오류 표시
         }
         if (!snapshot.hasData || snapshot.data == null || !snapshot.data!.exists) {
           return const Center(child: Text('Invitation not found')); // 초대장 없음
@@ -46,6 +51,7 @@ class InvitationPage extends StatelessWidget {
       },
     );
   }
+
 
   // 템플릿에 맞는 웹페이지 UI 생성
   Widget _buildTemplate(String? templateId, Map<String, dynamic> data) {

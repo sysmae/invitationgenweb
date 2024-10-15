@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GoRouter _router = GoRouter(
-      initialLocation: '/invitation/gdResudXNOXAGnWzzMyQ8tAfUf62/H5QdfCowjaN5mlZVRchz',
+        initialLocation: '/invitation/gdResudXNOXAGnWzzMyQ8tAfUf62/H5QdfCowjaN5mlZVRchz',
       routes: [
         GoRoute(
           path: '/invitation/:userId/:invitationId',
