@@ -1,23 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/material.dart';
+import 'firebase_service.dart'; // FirebaseService 클래스 임포트
 
 class InvitationPage extends StatelessWidget {
   final String userId; // 사용자 ID
   final String invitationId; // 초대장 ID
+  final FirebaseService firebaseService = FirebaseService(); // FirebaseService 인스턴스 생성
 
-  const InvitationPage({Key? key, required this.userId, required this.invitationId}) : super(key: key);
+  InvitationPage({Key? key, required this.userId, required this.invitationId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<DocumentSnapshot>(
-      future: FirebaseFirestore.instance
-          .collection('users')
-          .doc(userId) // 사용자 ID 사용
-          .collection('invitations')
-          .doc(invitationId)
-          .get(),
+    return FutureBuilder<DocumentSnapshot?>(
+      future: firebaseService.getInvitation(userId, invitationId), // FirebaseService를 통해 초대장 데이터 가져오기
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator()); // 로딩 중
@@ -51,7 +46,6 @@ class InvitationPage extends StatelessWidget {
       },
     );
   }
-
 
   // 템플릿에 맞는 웹페이지 UI 생성
   Widget _buildTemplate(String? templateId, Map<String, dynamic> data) {

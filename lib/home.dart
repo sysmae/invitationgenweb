@@ -1,31 +1,14 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'firebase_options.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_service.dart'; // FirebaseService 클래스 임포트
+import 'firebase_options.dart'; // Firebase 옵션 파일 임포트
 
-class FirebaseService {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  // 특정 초대장 가져오기
-  Future<DocumentSnapshot?> getInvitation(String userId, String invitationId) async {
-    try {
-      if (userId.isEmpty) return null; // userId가 비어있다면 null 반환
-
-      DocumentSnapshot invitationDoc = await _firestore
-          .collection('users')
-          .doc(userId)
-          .collection('invitations')
-          .doc(invitationId)
-          .get();
-
-      return invitationDoc.exists ? invitationDoc : null;
-    } catch (e) {
-      print('Failed to get invitation: ${e.toString()}');
-      return null;
-    }
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform); // Firebase 초기화
+  runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -54,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   DocumentSnapshot? invitation; // 초대장 데이터 저장할 변수
   final String userId = 'gdResudXNOXAGnWzzMyQ8tAfUf62'; // 사용자 ID
   final String invitationId = 'H5QdfCowjaN5mlZVRchz'; // 초대장 ID
+  final FirebaseService firebaseService = FirebaseService(); // FirebaseService 인스턴스 생성
 
   @override
   void initState() {
@@ -62,7 +46,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> fetchInvitation() async {
-    FirebaseService firebaseService = FirebaseService();
     DocumentSnapshot? fetchedInvitation = await firebaseService.getInvitation(userId, invitationId);
 
     setState(() {
@@ -74,7 +57,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('초대장 페이지'), // 제목 변경
+        title: const Text('초대장 페이지'), // 제목 변경
       ),
       body: Center(
         child: invitation == null

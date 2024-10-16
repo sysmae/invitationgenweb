@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterweb/home.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 import 'firebase_options.dart';
 import 'package:flutterweb/invitationPage.dart';
@@ -10,6 +12,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -19,8 +22,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GoRouter _router = GoRouter(
-        initialLocation: '/invitation/gdResudXNOXAGnWzzMyQ8tAfUf62/H5QdfCowjaN5mlZVRchz',
+      initialLocation: '/',
       routes: [
+        GoRoute(path: '/', builder: (context, state) {
+          return HomePage();
+        }),
         GoRoute(
           path: '/invitation/:userId/:invitationId',
           builder: (context, state) {

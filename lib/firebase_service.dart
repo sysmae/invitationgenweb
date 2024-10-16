@@ -1,16 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-import 'firebase_options.dart';
 
 class FirebaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // 특정 초대장 가져오기
-  Future<DocumentSnapshot?> getInvitation(String invitationId) async {
+  Future<DocumentSnapshot?> getInvitation(String userId, String invitationId) async {
     try {
-      String? userId = 'gdResudXNOXAGnWzzMyQ8tAfUf62';
-      if (userId == null) return null;
+      if (userId.isEmpty) return null; // userId가 비어있다면 null 반환
 
       DocumentSnapshot invitationDoc = await _firestore
           .collection('users')
