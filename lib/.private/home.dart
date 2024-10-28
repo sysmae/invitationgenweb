@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_service.dart'; // FirebaseService 클래스 임포트
-import 'firebase_options.dart'; // Firebase 옵션 파일 임포트
+import '../firebase_service.dart'; // FirebaseService 클래스 임포트
+import '../firebase_options.dart'; // Firebase 옵션 파일 임포트
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
