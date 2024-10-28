@@ -30,6 +30,7 @@ class InvitationPage extends StatelessWidget {
         var invitationData = snapshot.data!.data() as Map<String, dynamic>;
 
         // Firestore에서 가져온 모든 데이터를 변수로 저장
+        String templateId = invitationData['templateId'];
         String groomName = invitationData['groomName'];
         String brideName = invitationData['brideName'];
         String weddingLocation = invitationData['weddingLocation'];
@@ -61,7 +62,7 @@ class InvitationPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // 템플릿에 맞는 페이지를 표시
-                  _buildTemplate(invitationData['templateId'], invitationData),
+                  _buildTemplate(templateId, invitationData),
                   const SizedBox(height: 20),
                   // 모든 정보 표시
                   Text('Wedding Location: $weddingLocation'),
