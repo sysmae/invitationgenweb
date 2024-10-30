@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterweb/kakaoMap.dart';
 import 'firebase_service.dart'; // FirebaseService 클래스 임포트
 
 class InvitationPage extends StatelessWidget {
@@ -30,10 +31,10 @@ class InvitationPage extends StatelessWidget {
         var invitationData = snapshot.data!.data() as Map<String, dynamic>;
 
         // Firestore에서 가져온 모든 데이터를 변수로 저장
-        String templateId = invitationData['templateId'];
-        String groomName = invitationData['groomName'];
-        String brideName = invitationData['brideName'];
-        String weddingLocation = invitationData['weddingLocation'];
+        String templateId = invitationData['templateId'] ?? '';
+        String groomName = invitationData['groomName'] ?? '';
+        String brideName = invitationData['brideName'] ?? '';
+        String weddingLocation = invitationData['weddingLocation'] ?? '';
         DateTime weddingDateTime = invitationData['weddingDateTime'].toDate();
         String additionalAddress = invitationData['additionalAddress'] ?? '';
         String additionalInstructions = invitationData['additionalInstructions'] ?? '';
@@ -49,6 +50,12 @@ class InvitationPage extends StatelessWidget {
         String brideMotherPhone = invitationData['brideMotherPhone'] ?? '';
         String bridePhone = invitationData['bridePhone'] ?? '';
         String groomPhone = invitationData['groomPhone'] ?? '';
+        String locationX = invitationData['locationX'] ?? '';          // 추가된 변수
+        String locationY = invitationData['locationY'] ?? '';          // 추가된 변수
+        String locationId = invitationData['locationId'] ?? '';        // 추가된 변수
+        String locationName = invitationData['locationName'] ?? '';    // 추가된 변수
+        String locationUrl = invitationData['locationUrl'] ?? '';      // 추가된 변수
+        String locationPhoneNumber = invitationData['locationPhoneNumber'] ?? '';  // 추가된 변수
         Timestamp createdAt = invitationData['createdAt'];
         String createdAtFormatted = createdAt.toDate().toString();
 
@@ -78,6 +85,10 @@ class InvitationPage extends StatelessWidget {
                   Text('Bride Phone: $bridePhone'),
                   Text('Groom Phone: $groomPhone'),
                   Text('Created At: $createdAtFormatted'),
+
+                  const SizedBox(height: 20),
+                  // KakaoMap 위젯 추가
+                  KakaoMap(x: locationX, y: locationY),
                 ],
               ),
             ),

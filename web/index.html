@@ -19,7 +19,8 @@
   <title>flutterweb</title>
   <link rel="manifest" href="manifest.json">
 
-  <!-- Firebase SDK -->
+  <!-- External SDKs -->
+  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=c7f14517962ce3117e2ec63ae4cd7d54&libraries=services"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
@@ -29,31 +30,28 @@
 <script src="main.dart.js" async></script>
 
 <script>
-  // Firebase 설정
-  const firebaseConfig = {
-    apiKey: "AIzaSyC9_yWftokt6lG3xMZWZt5TV2EHRkZY6pM",
-    authDomain: "invitationgen-7eb56.firebaseapp.com",
-    projectId: "invitationgen-7eb56",
-    storageBucket: "invitationgen-7eb56.appspot.com",
-    messagingSenderId: "681443339119",
-    appId: "1:681443339119:web:f8c6b722a35c7ed2f1569a",
-    measurementId: "G-CERF28B40G"
-  };
+  // Load Firebase config from environment or secure config service
+  async function initializeServices() {
+    try {
+      // Get config from secure source
+      const config = await fetch('/api/config').then(r => r.json());
 
-  // Firebase 초기화
-  firebase.initializeApp(firebaseConfig);
+      // Initialize Firebase
+      firebase.initializeApp(config.firebaseConfig);
+      const db = firebase.firestore();
 
-  // Firestore 초기화
-  const db = firebase.firestore();
+      // Test Firestore connection
+      const snapshot = await db.collection("testCollection").get();
+      snapshot.forEach((doc) => {
+        console.log(doc.id, "=>", doc.data());
+      });
+    } catch (error) {
+      console.error("Initialization error:", error);
+    }
+  }
 
-  // Firestore 연결 테스트
-  db.collection("testCollection").get().then((snapshot) => {
-    snapshot.forEach((doc) => {
-      console.log(doc.id, "=>", doc.data());
-    });
-  }).catch((error) => {
-    console.error("Firestore error: ", error);
-  });
+  // Initialize after page load
+  window.addEventListener('load', initializeServices);
 </script>
 
 </body>
