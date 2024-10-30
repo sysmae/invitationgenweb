@@ -1,31 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterweb/kakaoMap.dart';
-import 'firebase_service.dart'; // FirebaseService 클래스 임포트
+import 'firebase_service.dart';
 
 class InvitationPage extends StatelessWidget {
-  final String userId; // 사용자 ID
-  final String invitationId; // 초대장 ID
-  final FirebaseService firebaseService = FirebaseService(); // FirebaseService 인스턴스 생성
+  final String userId;
+  final String invitationId;
+  final FirebaseService firebaseService = FirebaseService();
 
   InvitationPage({Key? key, required this.userId, required this.invitationId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<DocumentSnapshot?>(
-      future: firebaseService.getInvitation(userId, invitationId), // FirebaseService를 통해 초대장 데이터 가져오기
+      future: firebaseService.getInvitation(userId, invitationId),
       builder: (context, snapshot) {
-        // 데이터 로딩 중
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
-        // 오류 발생
         if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         }
-        // 데이터 없음
         if (!snapshot.hasData || snapshot.data == null || !snapshot.data!.exists) {
-          return const Center(child: Text('Invitation not found')); // 초대장 없음
+          return const Center(child: Text('Invitation not found'));
         }
 
         var invitationData = snapshot.data!.data() as Map<String, dynamic>;
@@ -59,38 +56,45 @@ class InvitationPage extends StatelessWidget {
         Timestamp createdAt = invitationData['createdAt'];
         String createdAtFormatted = createdAt.toDate().toString();
 
+
         return Scaffold(
           appBar: AppBar(
-            title: Text('$groomName & $brideName'), // groomName과 brideName 표시
+            title: Text('$groomName & $brideName'),
           ),
           body: Center(
-            child: SingleChildScrollView( // 스크롤 가능하도록 변경
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // 템플릿에 맞는 페이지를 표시
-                  _buildTemplate(templateId, invitationData),
-                  const SizedBox(height: 20),
-                  // 모든 정보 표시
-                  Text('Wedding Location: $weddingLocation'),
-                  Text('Wedding Date & Time: $weddingDateTime'),
-                  Text('Additional Address: $additionalAddress'),
-                  Text('Additional Instructions: $additionalInstructions'),
-                  Text('Groom Account Number: $groomAccountNumber'),
-                  Text('Bride Account Number: $brideAccountNumber'),
-                  Text('Groom Father: $groomFatherName, Phone: $groomFatherPhone'),
-                  Text('Groom Mother: $groomMotherName, Phone: $groomMotherPhone'),
-                  Text('Bride Father: $brideFatherName, Phone: $brideFatherPhone'),
-                  Text('Bride Mother: $brideMotherName, Phone: $brideMotherPhone'),
-                  Text('Bride Phone: $bridePhone'),
-                  Text('Groom Phone: $groomPhone'),
-                  Text('Created At: $createdAtFormatted'),
-
-                  const SizedBox(height: 20),
-                  // KakaoMap 위젯 추가
-                  KakaoMap(x: locationX, y: locationY),
-                ],
-              ),
+            child: Stack(
+              children: [
+                // 초대장 배경 이미지
+                Image.asset(
+                  'assets/bg1.png', // 초대장 배경 이미지 경로
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height, // 화면 높이에 맞추기
+                ),
+                SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 20),
+                      // 템플릿에 맞는 페이지를 표시
+                      _buildTemplate(templateId, invitationData),
+                      const SizedBox(height: 20),
+                      // 모든 정보 표시
+                      _buildInvitationDetails(
+                        weddingLocation: weddingLocation,
+                        weddingDateTime: weddingDateTime,
+                        additionalAddress: additionalAddress,
+                        additionalInstructions: additionalInstructions,
+                        groomAccountNumber: groomAccountNumber,
+                        brideAccountNumber: brideAccountNumber,
+                      ),
+                      const SizedBox(height: 20),
+                      // KakaoMap 위젯 추가
+                      KakaoMap(x: locationX, y: locationY),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         );
@@ -98,42 +102,56 @@ class InvitationPage extends StatelessWidget {
     );
   }
 
-  // 템플릿에 맞는 웹페이지 UI 생성
+  // 초대장 상세 정보 표시 위젯
+  Widget _buildInvitationDetails({
+    required String weddingLocation,
+    required DateTime weddingDateTime,
+    required String additionalAddress,
+    required String additionalInstructions,
+    required String groomAccountNumber,
+    required String brideAccountNumber,
+  }) {
+    return Column(
+      children: [
+        Text('Wedding Location: $weddingLocation', style: TextStyle(color: Colors.white)),
+        Text('Wedding Date & Time: ${weddingDateTime.toLocal()}', style: TextStyle(color: Colors.white)),
+        Text('Additional Address: $additionalAddress', style: TextStyle(color: Colors.white)),
+        Text('Additional Instructions: $additionalInstructions', style: TextStyle(color: Colors.white)),
+        Text('Groom Account Number: $groomAccountNumber', style: TextStyle(color: Colors.white)),
+        Text('Bride Account Number: $brideAccountNumber', style: TextStyle(color: Colors.white)),
+      ],
+    );
+  }
+
   Widget _buildTemplate(String? templateId, Map<String, dynamic> data) {
     if (templateId == null) {
       return const Text('Template ID is missing.');
     }
 
-    // templateId가 Firestore에서 유효한지 확인
     switch (templateId) {
       case '1':
-      // 템플릿 1에 대한 UI
         return Column(
           children: [
-            Text('This is Template 1', style: TextStyle(fontSize: 24)),
-            // 데이터에 따라 추가 UI 요소를 구성할 수 있음
-            Text('Data: ${data.toString()}'),
+            Text('This is Template 1', style: TextStyle(fontSize: 24, color: Colors.white)),
+            Text('Data: ${data.toString()}', style: TextStyle(color: Colors.white)),
           ],
         );
       case '2':
-      // 템플릿 2에 대한 UI
         return Column(
           children: [
-            Text('This is Template 2', style: TextStyle(fontSize: 24)),
-            Text('Data: ${data.toString()}'),
+            Text('This is Template 2', style: TextStyle(fontSize: 24, color: Colors.white)),
+            Text('Data: ${data.toString()}', style: TextStyle(color: Colors.white)),
           ],
         );
       case '3':
-      // 템플릿 3에 대한 UI
         return Column(
           children: [
-            Text('This is Template 3', style: TextStyle(fontSize: 24)),
-            Text('Data: ${data.toString()}'),
+            Text('This is Template 3', style: TextStyle(fontSize: 24, color: Colors.white)),
+            Text('Data: ${data.toString()}', style: TextStyle(color: Colors.white)),
           ],
         );
       default:
-      // 알 수 없는 템플릿 ID 처리
-        return Text('Unknown Template with data: ${data.toString()}');
+        return Text('Unknown Template with data: ${data.toString()}', style: TextStyle(color: Colors.white));
     }
   }
 }

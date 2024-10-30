@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         GoRoute(
             path: '/',
             builder: (context, state) {
-              return const HomePage(); // 홈 페이지로 라우팅
+              return  HomePage(); // 홈 페이지로 라우팅
             }),
       ],
       errorBuilder: (context, state) => Scaffold(
