@@ -51,11 +51,15 @@ class InvitationPage extends StatelessWidget {
         String locationY = invitationData['locationY'] ?? '';          // 추가된 변수
         String locationId = invitationData['locationId'] ?? '';        // 추가된 변수
         String locationName = invitationData['locationName'] ?? '';    // 추가된 변수
-        String locationUrl = invitationData['locationUrl'] ?? '';      // 추가된 변수
         String locationPhoneNumber = invitationData['locationPhoneNumber'] ?? '';  // 추가된 변수
         Timestamp createdAt = invitationData['createdAt'];
-        String createdAtFormatted = createdAt.toDate().toString();
 
+        String locationUrl = invitationData['locationUrl'] ?? '';      // 카카오 지도 url
+        String kakaoRoadUrl = invitationData['kakaoRoadUrl'] ?? '';    // 카카오 내비 url
+        String naverRoadUrl = invitationData['naverRoadUrl'] ?? '';    // 네이버 지도 url
+
+
+        String createdAtFormatted = createdAt.toDate().toString();
 
         return Scaffold(
           appBar: AppBar(

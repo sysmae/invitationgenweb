@@ -63,9 +63,14 @@ class HomePage extends StatelessWidget {
           String locationY = invitationData['locationY'] ?? '';          // 추가된 변수
           String locationId = invitationData['locationId'] ?? '';        // 추가된 변수
           String locationName = invitationData['locationName'] ?? '';    // 추가된 변수
-          String locationUrl = invitationData['locationUrl'] ?? '';      // 추가된 변수
           String locationPhoneNumber = invitationData['locationPhoneNumber'] ?? '';  // 추가된 변수
           Timestamp createdAt = invitationData['createdAt'];
+
+          String locationUrl = invitationData['locationUrl'] ?? '';      // 카카오 지도 url
+          String kakaoRoadUrl = invitationData['kakaoRoadUrl'] ?? '';    // 카카오 내비 url
+          String naverRoadUrl = invitationData['naverRoadUrl'] ?? '';    // 네이버 지도 url
+
+
           String createdAtFormatted = createdAt.toDate().toString();
 
           // HTML 콘텐츠를 InAppWebView로 렌더링
@@ -73,53 +78,69 @@ class HomePage extends StatelessWidget {
             initialData: InAppWebViewInitialData(
               data: '''
                 <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                  <meta charset="UTF-8">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <style>
-                    * {
-                      margin: 0;
-                      padding: 0;
-                      box-sizing: border-box;
-                    }
-                    body, html {
-                      font-family: Arial, sans-serif;
-                      margin: 0;
-                      padding: 0;
-                    }
-                    .background-container {
-                      width: 100%;
-                      overflow: auto; /* Scrollable content */
-                    }
-                    .background-image {
-                      width: 100%;
-                      height: auto; /* Maintain aspect ratio */
-                    }
-                    .overlay {
-                      position: absolute;
-                      top: 50%;
-                      left: 50%;
-                      transform: translate(-50%, -50%);
-                      color: white;
-                      font-size: 24px;
-                      text-align: center;
-                      padding: 20px;
-                      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-                      border-radius: 10px;
-                    }
-                  </style>
-                </head>
-                <body>
-                  <div class="background-container">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/bg1.png?alt=media&token=b4a9c334-fb35-49c4-a43b-cbc02aa9dc52" alt="Background Image" class="background-image">
-                    <div class="overlay">
-                      <h1>Groom Name: ${invitationData['groomName'] ?? 'Unknown'}</h1>
-                      <h1>Bride Name: ${invitationData['brideName'] ?? 'Unknown'}</h1>
+                  <html lang="ko">
+                  <head>
+                      <meta charset="UTF-8">
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      <title>이미지 보기</title>
+                      <link rel="preconnect" href="https://fonts.googleapis.com">
+                      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                      <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+                      <style>
+                          .nanum-myeongjo-regular {
+                          font-family: "Nanum Myeongjo", serif;
+                          font-weight: 400;
+                          font-style: normal;
+                          }
+                      </style>
+                  </head>
+                  <body background="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/background.png?alt=media&token=71f07a58-b285-4130-bab2-00f7d8bb3919" style="height: 3000px;">
+                      <h1 style="font-family: Nanum Myeongjo; text-align: center; margin-top: 100px; font-size: 30px; font-weight: 500;"><br>저희 결혼합니다</h1>
+                      <div style="text-align: center; position: relative;">
+                          <img src="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/character.png?alt=media&token=683c3711-fd7e-49d7-846d-0f0e9f6ffa2a" width="300" style="margin-top: 10px;">
+                      </div>
+                      <div>
+                          <p style="font-family: Nanum Myeongjo; text-align: center; font-weight: 550; margin-top: 30px;">두 마음이 하나가 되는날<br>존중하며살겠습니다</p>
+                      </div>
+                      <div style="display: flex; gap: 20px; font-family: Nanum Myeongjo; font-weight: 500; text-align: center; justify-content: center;">
+                          <p >신부<br><span style="font-size: 20px; font-weight: 650;">${invitationData['brideName'] ?? 'Unknown'}</span></p>
+                          <p style="margin-top: 20px; font-size: 35px; font-weight: 550;"> & </p>
+                          <p >신랑<br><span style="font-size: 20px; font-weight: 650;">${invitationData['groomName'] ?? 'Unknown'}</span></p>
+                      </div>
+                      <div style="height: 50px; background-color:blanchedalmond; display: flex; align-items: center; justify-content: center; color: rgb(0, 0, 0); font-family: Nanum Myeongjo;">
+                          <p>${invitationData['weddingDateTime'].toDate()}</p>
+                      </div>
+                      
+                       // 아래는 참고용입니다.
+                       <div style="margin-top: 20px; text-align: center; font-family: Nanum Myeongjo;">
+                        <h2>초대장 데이터</h2>
+                        <p><strong>Template ID:</strong> ${templateId}</p>
+                        <p><strong>신랑 아버지:</strong> ${groomFatherName} (${groomFatherPhone})</p>
+                        <p><strong>신부 아버지:</strong> ${brideFatherName} (${brideFatherPhone})</p>
+                        <p><strong>신랑 어머니:</strong> ${groomMotherName} (${groomMotherPhone})</p>
+                        <p><strong>신부 어머니:</strong> ${brideMotherName} (${brideMotherPhone})</p>
+                        <p><strong>신랑 전화번호:</strong> ${groomPhone}</p>
+                        <p><strong>신부 전화번호:</strong> ${bridePhone}</p>
+                        <p><strong>결혼 장소:</strong> ${weddingLocation}</p>
+                        <p><strong>추가 주소:</strong> ${additionalAddress}</p>
+                        <p><strong>추가 지시 사항:</strong> ${additionalInstructions}</p>
+                        <p><strong>신랑 계좌 번호:</strong> ${groomAccountNumber}</p>
+                        <p><strong>신부 계좌 번호:</strong> ${brideAccountNumber}</p>
+                        <p><strong>위치 X:</strong> ${locationX}</p>
+                        <p><strong>위치 Y:</strong> ${locationY}</p>
+                        <p><strong>위치 ID:</strong> ${locationId}</p>
+                        <p><strong>위치 이름:</strong> ${locationName}</p>
+                        <p><strong>위치 전화번호:</strong> ${locationPhoneNumber}</p>
+                        <p><strong>작성일:</strong> ${createdAtFormatted}</p>
+                        
+                        <p><strong>카카오 지도:</strong> <a href="$locationUrl" target="_blank">카카오 지도 보기</a></p>
+                        <p><strong>카카오 내비게이션:</strong> <a href="$kakaoRoadUrl" target="_blank">카카오 내비게이션 사용</a></p>
+                        <p><strong>네이버 지도:</strong> <a href="$naverRoadUrl" target="_blank">네이버 지도 사용</a></p>
                     </div>
-                  </div>
-                </body>
-                </html>
+                    
+                  </body>
+                  </html>
+
               ''',
             ),
             initialOptions: InAppWebViewGroupOptions(
