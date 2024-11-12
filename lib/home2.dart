@@ -4,12 +4,12 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:intl/intl.dart'; //DateFormat 사용하기 위한 라이브러리
 // import 'firebase_service.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage2 extends StatelessWidget {
   // final FirebaseService firebaseService = FirebaseService();
   // final String userId = 'KYWLzRYrpaW9LqQGucsDHGK8cih1'; // 실제 Firestore에서 사용되는 userId
   // final String invitationId = 'phNnoBTnm4gIupnfpA6X'; // 실제 Firestore에서 사용되는 invitationId
   final Map<String, dynamic> data; //추가
-  HomePage({super.key , required this.data}); //required this.data invitationPage 데이터 받아오기위함
+  HomePage2({super.key , required this.data}); //required this.data invitationPage 데이터 받아오기위함
 
   // Future<Map<String, dynamic>> _getInvitationData() async {
   //   DocumentSnapshot? invitationSnapshot = await firebaseService.getInvitation(userId, invitationId);
@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
           String locationUrl = data['locationUrl'] ?? '';      // 카카오 지도 url
           String kakaoRoadUrl = data['kakaoRoadUrl'] ?? '';    // 카카오 내비 url
           String naverRoadUrl = data['naverRoadUrl'] ?? '';    // 네이버 지도 url
-          final formattedDateTime = DateFormat('MM-dd').format(weddingDateTime);//날짜 시간 분만 출력
+          final formattedDateTime = DateFormat('yyyy-MM-dd HH시 mm분').format(weddingDateTime);//날짜 시간 분만 출력
           final weddingDate = "'${DateFormat('yyyy-MM-dd').format(weddingDateTime)}'";//달력 날짜
           final weddingHours = "'${DateFormat('HH').format(weddingDateTime)}'";//달력 시간
           final weddingMinutes = "'${DateFormat('mm').format(weddingDateTime)}'";//달력 분
@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
           return InAppWebView(
             initialData: InAppWebViewInitialData(
               data: '''
-                 <!DOCTYPE html>
+                <!DOCTYPE html>
                   <html lang="ko">
               <head>
                   <meta charset="UTF-8">
@@ -93,55 +93,29 @@ class HomePage extends StatelessWidget {
                   <link rel="preconnect" href="https://fonts.googleapis.com">
                   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                   <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-                  <link href="https://fonts.googleapis.com/css2?family=Grandiflora+One&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-
+                  <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
                   <style>
-                      .grandiflora-one-regular {
-                        font-family: "Grandiflora One", cursive;
-                        font-weight: 400;
-                        font-style: normal;
+                  
+              
+                  
+                      .nanum-myeongjo-regular {
+                      font-family: "Nanum Myeongjo", serif;
+                      font-weight: 400;
+                      font-style: normal;
                       }
               
-                      .invitation-container {
-                        position: relative;
-                        text-align: center;
-                        width: 100%;
-                        max-width: 650px;
-                    }
-                    .invitation-image {
-                        width: 100%;
-                        height: auto;
-                        display: block;
-                    }
-                    
-                    .wed-day {
-                        position: absolute;
-                        top: 20%;
-                        width: 100%;
-                        font-size: 3em;
-                        color: #5a4b44;
-                        font-weight: bold;
-                    }
-                    .name-bride {
-                        position: absolute;
-                        left: 10%;
-                        bottom: 30%;
-                        font-family: 'Grandiflora One';
-                        font-size: 30px;
-                        font-weight: 700;
-                        writing-mode: vertical-lr;
-                        color: #5a4b44;
-                    }
-                    .name-groom {
-                        position: absolute;
-                        right: 10%;
-                        bottom: 30%;
-                        font-family: 'Grandiflora One';
-                        font-size: 30px;
-                        font-weight: 700;
-                        writing-mode: vertical-lr;
-                        color: #5a4b44;
-                    }
+              
+                      .fading-box {
+                      padding: 10px 20px;
+                      background-color: #FAE1D0; 
+                      text-align: center;
+                      font-size: 24px;
+                      font-family: "Nanum Myeongjo";
+                      color: #000; 
+                      box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+                      border-radius: 10px; 
+                   
+                      }
               
                       .groombutton {
                       background-color: #5bc0de; 
@@ -264,7 +238,7 @@ class HomePage extends StatelessWidget {
                       border-top-right-radius: 15px;
                       width: 100%;
                       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-                      font-family: Tem1font; 
+                      font-family: Nanum Myeongjo; 
                       font-size: 25px;
                       margin-top: 10%;
                       max-width: 600px;
@@ -315,7 +289,7 @@ class HomePage extends StatelessWidget {
                         width: 550px;
                         height: 400px;
                         padding: 20px;
-                        background-color: white;
+                        background-color: transparent;
                         border: 5px solid white;
                         border-radius: 10px;
                         text-align: center;
@@ -393,36 +367,42 @@ class HomePage extends StatelessWidget {
               
                   </style>
               </head>
-              <body background="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/Tem1Bg.png?alt=media&token=a39dc153-b3df-4e17-9aa4-c286b570f884" style="height: 4500px;">
+              <body background="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/background.png?alt=media&token=71f07a58-b285-4130-bab2-00f7d8bb3919" style="height: 4500px;">
                 <div class="centered-wrapper">
-
-                
-                <div class="invitation-container">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/Tem1Img.png?alt=media&token=31f8a206-7833-464f-850e-5cbe1c7aa547" alt="Wedding Invitation Background" class="invitation-image">
-                    <div class="wed-day">${formattedDateTime}</div>
-                    <div class="name-bride">${brideName}</div>
-                    <div class="name-groom">${groomName}</div>
-                </div>
-                  
+                  <h1 style="font-family: Nanum Myeongjo; text-align: center; font-size: 50px; font-weight: 500;"><br>저희 결혼합니다</h1>
+                  <div style="text-align: center; position: relative;">
+                      <img src="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/character.png?alt=media&token=683c3711-fd7e-49d7-846d-0f0e9f6ffa2a" width="300" style="margin-top: 10px;">
+                  </div>
+                  <div>
+                      <p style="font-family: Nanum Myeongjo; text-align: center; font-weight: 550; margin-top: 30px; font-size: 30px;">두 마음이 하나가 되는날<br>존중하며 살겠습니다</p>
+                  </div>
+                  <div style="display: flex; gap: 50px; font-family: Nanum Myeongjo; font-weight: 500; text-align: center; justify-content: center; ">
+                      <p style="font-size: 30px;">신부<br><span style="font-size: 50px; font-weight: 500;">${brideName}</span></p>
+                      <p style="margin-top: 50px; font-size: 50px; font-weight: 550;"> & </p>
+                      <p style="font-size: 30px;">신랑<br><span style="font-size: 50px; font-weight: 500;">${groomName}</span></p>
+                  </div>
+                  <div class = "fading-box">
+                      ${formattedDateTime}
+                  </div>
                       
               
-                  <div style="text-align: center; font-family: 'Grandiflora One'; font-size: 30px; margin-top: 20%; font-weight: 500;">
+                  <div style="text-align: center; font-family: Nanum Myeongjo; font-size: 25px; margin-top: 20%;">
                       <p style="margin: 0;">초대합니다</p>
                       <hr style="width: 20%; margin: 5px auto 0; border: none; border-top: 2px solid #999;">
                     </div>
                     
                     <div>
-                      <p style="font-family: 'Grandiflora One'; text-align: center; margin-top: 10px; font-size: 30px; font-weight: 600;"><br>저희 두 사람의 결혼식에 모시고자 합니다 <br><br> 먼 길 힘드시겠지만, 꼭 참석하여 그동안 쌓아온<br>인생의 경험과 강인함을 저희와 공유해 주시길 부탁드립니다
+                      <p style="font-family: Nanum Myeongjo; text-align: center; margin-top: 10px; font-size: 30px; font-weight: 500;"><br>저희 두 사람의 결혼식에 모시고자 합니다 <br><br> 먼 길 힘드시겠지만, 꼭 참석하여 그동안 쌓아온<br>인생의 경험과 강인함을 저희와 공유해 주시길 부탁드립니다
                   <br>여러분들의 가르침을 따라 올바르게 앞을 향해 나아가겠습니다.<br><br>함께하시어 행복을 더해주시길 기대합니다</p>
                     </div>
               
-                  <div style="display: flex; gap: 20%; font-family: 'Grandiflora One'; font-weight: 500; text-align: center; justify-content: center; margin-top: 1%;">
+                  <div style="display: flex; gap: 20%; font-family: 'Nanum Myeongjo'; font-weight: 500; text-align: center; justify-content: center; margin-top: 1%;">
                       <div class="phoneContainer">
-                          <p style="font-size: 40px; font-weight: 600;"><span style="color: #8b8b8b;">신랑&nbsp</span> ${groomName}</p> 
+                          <p style="font-size: 40px;"><span style="color: #8b8b8b;">신랑&nbsp</span> ${groomName}</p> 
                           <div class="groomPhonebutton" onclick="location.href='tel:${bridePhone}'">전화하기</div>
                       </div>
                       <div class="phoneContainer">
-                          <p style="font-size: 40px; font-weight: 600;"><span style="color: #8b8b8b;">신부&nbsp</span> ${brideName}</p>
+                          <p style="font-size: 40px;"><span style="color: #8b8b8b;">신부&nbsp</span> ${brideName}</p>
                           <div class="bridePhonebutton" onclick="location.href='tel:${groomPhone}'">전화하기</div> 
                       </div>
                   </div>
@@ -538,42 +518,42 @@ class HomePage extends StatelessWidget {
                   
                   
               
-                  <div style="text-align: center; font-family: Grandiflora One; font-size: 35px; margin-top: 5%;">
+                  <div style="text-align: center; font-family: Nanum Myeongjo; font-size: 25px; margin-top: 5%;">
                       <p style="margin: 0;">혼주 연락처</p>
-                      <hr style="width: 30%; margin: 5px auto 0; border: none; border-top: 1px solid #4d4d4d;">
+                      <hr style="width: 20%; margin: 5px auto 0; border: none; border-top: 2px solid #999;">
                   </div>
                   
-                  <div style="display: flex; gap: 40%; font-size: 30px; font-family: Grandiflora One; font-weight: 600; text-align: center; justify-content: center; margin-top: 5%;">
+                  <div style="display: flex; gap: 40%; font-size: 30px; font-family: Nanum Myeongjo; font-weight: 600; text-align: center; justify-content: center; margin-top: 5%;">
                       <p style="color: #87CEEB;">신랑 측</p>
                       <p style="color: #ffdc92;">신부 측</p>
                   </div>
               
-                  <div style="display: flex; gap: 20%; font-family: Grandiflora One; font-weight: 500; text-align: center; justify-content: center;">
+                  <div style="display: flex; gap: 20%; font-family: Nanum Myeongjo; font-weight: 500; text-align: center; justify-content: center;">
                     <div class="phoneContainer">
                         <p><span style="font-size: 30px; color: #8b8b8b;">아버지&nbsp</span> 
-                           <span style="font-size: 40px; font-weight: 600; color: #000000;">&nbsp${groomFatherName}</span></p>
+                           <span style="font-size: 40px; color: #000000;">&nbsp${groomFatherName}</span></p>
                         <div class="groomPhonebutton" onclick="location.href='tel:${groomFatherPhone}'">전화하기</div>
                 
                         <p><span style="font-size: 30px; color: #8b8b8b;">어머니&nbsp</span> 
-                           <span style="font-size: 40px; font-weight: 600; color: #000000;">&nbsp${groomMotherName}</span></p>
+                           <span style="font-size: 40px; color: #000000;">&nbsp${groomMotherName}</span></p>
                         <div class="groomPhonebutton" onclick="location.href='tel:${groomMotherPhone}'">전화하기</div>
                     </div>
                 
                     <div class="phoneContainer">
                         <p><span style="font-size: 30px; color: #8b8b8b;">아버지&nbsp</span> 
-                           <span style="font-size: 40px; font-weight: 600; color: #000000;">&nbsp${brideFatherName}</span></p>
+                           <span style="font-size: 40px; color: #000000;">&nbsp${brideFatherName}</span></p>
                         <div class="bridePhonebutton" onclick="location.href='tel:${brideFatherPhone}'">전화하기</div>
                 
                         <p><span style="font-size: 30px; color: #8b8b8b;">어머니&nbsp</span> 
-                           <span style="font-size: 40px; font-weight: 600; color: #000000;">&nbsp${brideMotherName}</span></p>
+                           <span style="font-size: 40px; color: #000000;">&nbsp${brideMotherName}</span></p>
                         <div class="bridePhonebutton" onclick="location.href='tel:${brideMotherPhone}'">전화하기</div>
                     </div>
                 </div>
 
               
-                  <div style="text-align: center; font-family: Grandiflora One; font-size: 35px; margin-top: 15%;">
+                  <div style="text-align: center; font-family: Nanum Myeongjo; font-size: 25px; margin-top: 15%;">
                       <p style="margin: 0;">오시는 길</p>
-                      <hr style="width: 30%; margin: 5px auto 0; border: none; border-top: 1px solid #4d4d4d;">
+                      <hr style="width: 20%; margin: 5px auto 0; border: none; border-top: 2px solid #999;">
                   </div>
                   
                   <div class="mapContainer">
@@ -627,27 +607,26 @@ class HomePage extends StatelessWidget {
                   
                
                   
-                  <div style="text-align: center; font-family: Grandiflora One; font-size: 35px; margin-top: 10%;">
+                  <div style="text-align: center; font-family: Nanum Myeongjo; font-size: 25px; margin-top: 10%;">
                       <p style="margin: 0;">마음 전하기</p>
-                      <hr style="width: 30%; margin: 5px auto 0; border: none; border-top: 1px solid #4d4d4d;">
-                      <p style="font-family: Grandiflora One; text-align: center; margin-top: 40px; margin-bottom: 100px; font-size: 30px; font-weight: 600;">축하의 마음을 전해주세요</p>
+                      <hr style="width: 20%; margin: 5px auto 0; border: none; border-top: 2px solid #999;">
+                      <p style="font-family: Nanum Myeongjo; text-align: center; margin-top: 40px; margin-bottom: 100px; font-size: 30px; font-weight: 400;">축하의 마음을 전해주세요</p>
                   </div>
                   
               
                   <div class="accountContainer">
-                      <span style="font-family: Grandiflora One; font-size: 30px; color: #8b8b8b; font-weight: 600;">신랑 측&nbsp&nbsp&nbsp&nbsp</span>
-                      <div class="groombutton" style="font-family: Grandiflora One; font-weight: 600;">축의금으로 마음 전하기</div>
+                      <span style="font-family: Nanum Myeongjo; font-size: 30px; color: #8b8b8b;">신랑 측&nbsp&nbsp&nbsp&nbsp</span>
+                      <div class="groombutton" style="font-family: 'Nanum Myeongjo'";>축의금으로 마음 전하기</div>
                   </div>
               
                   <div class="accountContainer" style="margin-top: 40px;">
-                      <span style="font-family: Grandiflora One; font-size: 30px; color: #8b8b8b; font-weight: 600;">신부 측&nbsp&nbsp&nbsp&nbsp</span>
-                      <div class="bridebutton" style= "font-family: Grandiflora One; font-weight: 600; " ; >축의금으로 마음 전하기</div> 
+                      <span style="font-family: Nanum Myeongjo; font-size: 30px; color: #8b8b8b;">신부 측&nbsp&nbsp&nbsp&nbsp</span>
+                      <div class="bridebutton" style="font-family: 'Nanum Myeongjo'";>축의금으로 마음 전하기</div> 
                   </div>
                  </div>
                   
               </body>
               </html>
-          
           
               ''',
 

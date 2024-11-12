@@ -1,7 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterweb/kakaoMap.dart';
+// import 'package:flutterweb/kakaoMap.dart'; //안씀
 import 'firebase_service.dart';
+import 'package:intl/intl.dart';
+import 'home.dart';
+import 'home2.dart';
+import 'home3.dart';
+
 
 class InvitationPage extends StatelessWidget {
   final String userId;
@@ -53,79 +58,45 @@ class InvitationPage extends StatelessWidget {
         String locationName = invitationData['locationName'] ?? '';    // 추가된 변수
         String locationPhoneNumber = invitationData['locationPhoneNumber'] ?? '';  // 추가된 변수
         Timestamp createdAt = invitationData['createdAt'];
-
         String locationUrl = invitationData['locationUrl'] ?? '';      // 카카오 지도 url
         String kakaoRoadUrl = invitationData['kakaoRoadUrl'] ?? '';    // 카카오 내비 url
         String naverRoadUrl = invitationData['naverRoadUrl'] ?? '';    // 네이버 지도 url
-
-
+        final formattedDateTime = DateFormat('yyyy-MM-dd HH시 mm분').format(weddingDateTime);//날짜 시간 분만 출력
+        final weddingDate = "'${DateFormat('yyyy-MM-dd').format(weddingDateTime)}'";//달력 날짜
+        final weddingHours = "'${DateFormat('HH').format(weddingDateTime)}'";//달력 시간
+        final weddingMinutes = "'${DateFormat('mm').format(weddingDateTime)}'";//달력 분
         String createdAtFormatted = createdAt.toDate().toString();
 
         return Scaffold(
-          appBar: AppBar(
-            title: Text('$groomName & $brideName'),
-          ),
-          body: Center(
-            child: Stack(
-              children: [
-                // 초대장 배경 이미지
-                Image.asset(
-                  'assets/bg1.png', // 초대장 배경 이미지 경로
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height, // 화면 높이에 맞추기
-                ),
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 20),
-                      // 템플릿에 맞는 페이지를 표시
-                      _buildTemplate(templateId, invitationData),
-                      const SizedBox(height: 20),
-                      // 모든 정보 표시
-                      _buildInvitationDetails(
-                        weddingLocation: weddingLocation,
-                        weddingDateTime: weddingDateTime,
-                        additionalAddress: additionalAddress,
-                        additionalInstructions: additionalInstructions,
-                        groomAccountNumber: groomAccountNumber,
-                        brideAccountNumber: brideAccountNumber,
-                      ),
-                      const SizedBox(height: 20),
-                      // KakaoMap 위젯 추가
-                      KakaoMap(x: locationX, y: locationY),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+
+          body: _buildTemplate(templateId, invitationData),
+
+
         );
       },
     );
   }
 
-  // 초대장 상세 정보 표시 위젯
-  Widget _buildInvitationDetails({
-    required String weddingLocation,
-    required DateTime weddingDateTime,
-    required String additionalAddress,
-    required String additionalInstructions,
-    required String groomAccountNumber,
-    required String brideAccountNumber,
-  }) {
-    return Column(
-      children: [
-        Text('Wedding Location: $weddingLocation', style: TextStyle(color: Colors.white)),
-        Text('Wedding Date & Time: ${weddingDateTime.toLocal()}', style: TextStyle(color: Colors.white)),
-        Text('Additional Address: $additionalAddress', style: TextStyle(color: Colors.white)),
-        Text('Additional Instructions: $additionalInstructions', style: TextStyle(color: Colors.white)),
-        Text('Groom Account Number: $groomAccountNumber', style: TextStyle(color: Colors.white)),
-        Text('Bride Account Number: $brideAccountNumber', style: TextStyle(color: Colors.white)),
-      ],
-    );
-  }
+  // // 초대장 상세 정보 표시 위젯
+  // Widget _buildInvitationDetails({
+  //   required String weddingLocation,
+  //   required DateTime weddingDateTime,
+  //   required String additionalAddress,
+  //   required String additionalInstructions,
+  //   required String groomAccountNumber,
+  //   required String brideAccountNumber,
+  // }) {
+  //   return Column(
+  //     children: [
+  //       Text('Wedding Location: $weddingLocation', style: TextStyle(color: Colors.white)),
+  //       Text('Wedding Date & Time: ${weddingDateTime.toLocal()}', style: TextStyle(color: Colors.white)),
+  //       Text('Additional Address: $additionalAddress', style: TextStyle(color: Colors.white)),
+  //       Text('Additional Instructions: $additionalInstructions', style: TextStyle(color: Colors.white)),
+  //       Text('Groom Account Number: $groomAccountNumber', style: TextStyle(color: Colors.white)),
+  //       Text('Bride Account Number: $brideAccountNumber', style: TextStyle(color: Colors.white)),
+  //     ],
+  //   );
+  // }
 
   Widget _buildTemplate(String? templateId, Map<String, dynamic> data) {
     if (templateId == null) {
@@ -134,26 +105,11 @@ class InvitationPage extends StatelessWidget {
 
     switch (templateId) {
       case '1':
-        return Column(
-          children: [
-            Text('This is Template 1', style: TextStyle(fontSize: 24, color: Colors.white)),
-            Text('Data: ${data.toString()}', style: TextStyle(color: Colors.white)),
-          ],
-        );
+        return HomePage(data: data);
       case '2':
-        return Column(
-          children: [
-            Text('This is Template 2', style: TextStyle(fontSize: 24, color: Colors.white)),
-            Text('Data: ${data.toString()}', style: TextStyle(color: Colors.white)),
-          ],
-        );
+        return HomePage2(data: data);
       case '3':
-        return Column(
-          children: [
-            Text('This is Template 3', style: TextStyle(fontSize: 24, color: Colors.white)),
-            Text('Data: ${data.toString()}', style: TextStyle(color: Colors.white)),
-          ],
-        );
+        return HomePage3(data: data);
       default:
         return Text('Unknown Template with data: ${data.toString()}', style: TextStyle(color: Colors.white));
     }

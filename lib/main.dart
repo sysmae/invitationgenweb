@@ -32,11 +32,11 @@ class MyApp extends StatelessWidget {
             return InvitationPage(userId: userId, invitationId: invitationId); // 초대장 페이지로 라우팅
           },
         ),
-        GoRoute(
-            path: '/',
-            builder: (context, state) {
-              return  HomePage(); // 홈 페이지로 라우팅
-            }),
+         // GoRoute(
+         //     path: '/',
+         //     builder: (context, state) {
+         //       return  HomePage(); // 홈 페이지로 라우팅
+         //     }),
       ],
       errorBuilder: (context, state) => Scaffold(
         body: Center(child: Text('Error: ${state.error}')), // 오류 처리
