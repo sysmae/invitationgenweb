@@ -363,6 +363,79 @@ class HomePage2 extends StatelessWidget {
                         transform: scale(0.95); 
                     }
 
+
+                /* General modal styling */
+                  .modal {
+                      display: none; /* Hidden by default */
+                      position: fixed;
+                      z-index: 1;
+                      left: 0;
+                      top: 0;
+                      width: 100%;
+                      height: 100%;
+                      overflow: auto;
+                      background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+                      justify-content: center;
+                      align-items: center;
+                      transition: opacity 0.3s ease;
+                  }
+                  
+                  .modal button {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                 } 
+                 
+                 /* Header style */
+                  .modal h2 {
+                      font-size: 22px;
+                      color: #333;
+                      margin-bottom: 15px;
+                      font-weight: 600;
+                  }
+                  
+                  /* Paragraph style for account number */
+                  .modal p {
+                      font-size: 18px;
+                      color: #555;
+                      margin-bottom: 20px;
+                  }
+                  
+                  /* Modal content box */
+                  .modal-content {
+                      background-color: #fff;
+                      margin: 10% auto;
+                      padding: 20px;
+                      border-radius: 10px;
+                      width: 80%;
+                      max-width: 400px;
+                      text-align: center;
+                      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                  }
+                  
+                  /* Close button */
+                  .close {
+                      color: #aaa;
+                      font-size: 28px;
+                      font-weight: bold;
+                      position: absolute;
+                      top: 10px;
+                      right: 15px;
+                      cursor: pointer;
+                  }
+                  
+                  /* Hover effect for close button */
+                  .close:hover,
+                  .close:focus {
+                      color: #000;
+                      text-decoration: none;
+                      cursor: pointer;
+                  }
               
               
                   </style>
@@ -514,6 +587,59 @@ class HomePage2 extends StatelessWidget {
                     }
                 
                     createCalendar(date,hours, minutes);
+                    
+                   function openModal(type) {
+                    var modal;
+                    if (type === 'groom') {
+                        modal = document.getElementById("groomModal");
+                    } else if (type === 'bride') {
+                        modal = document.getElementById("brideModal");
+                    }
+                
+                    // Display the modal
+                    modal.style.display = "block";
+                
+                    // Close the modal when clicking outside of the modal content
+                    window.onclick = function(event) {
+                        if (event.target === modal) {
+                            closeModal(type);
+                        }
+                    };
+                }
+                
+                function closeModal(type) {
+                    var modal;
+                    if (type === 'groom') {
+                        modal = document.getElementById("groomModal");
+                    } else if (type === 'bride') {
+                        modal = document.getElementById("brideModal");
+                    }
+                
+                    // Hide the modal
+                    modal.style.display = "none";
+                
+                    // Remove the click event listener to prevent multiple bindings
+                    window.onclick = null;
+                }
+
+            
+            function copyToClipboard(type) {
+                var accountNumber;
+                if (type === 'groom') {
+                    accountNumber = document.getElementById("groomAccountNumber").innerText;
+                } else if (type === 'bride') {
+                    accountNumber = document.getElementById("brideAccountNumber").innerText;
+                }
+            
+                var tempInput = document.createElement("input");
+                tempInput.value = accountNumber;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                alert(accountNumber + "이(가) 클립보드에 복사되었습니다.");
+            }
+
                 </script>
                   
                   
@@ -616,14 +742,35 @@ class HomePage2 extends StatelessWidget {
               
                   <div class="accountContainer">
                       <span style="font-family: Nanum Myeongjo; font-size: 30px; color: #8b8b8b;">신랑 측&nbsp&nbsp&nbsp&nbsp</span>
-                      <div class="groombutton" style="font-family: 'Nanum Myeongjo'";>축의금으로 마음 전하기</div>
+                      <div class="groombutton" style="font-family: 'Nanum Myeongjo'; cursor:pointer;"; onclick="openModal('groom')">축의금으로 마음 전하기</div>
                   </div>
               
                   <div class="accountContainer" style="margin-top: 40px;">
                       <span style="font-family: Nanum Myeongjo; font-size: 30px; color: #8b8b8b;">신부 측&nbsp&nbsp&nbsp&nbsp</span>
-                      <div class="bridebutton" style="font-family: 'Nanum Myeongjo'";>축의금으로 마음 전하기</div> 
+                      <div class="bridebutton" style="font-family: 'Nanum Myeongjo'; cursor:pointer;"; onclick="openModal('bride')">축의금으로 마음 전하기</div> 
                   </div>
                  </div>
+                 
+                 <!-- 신랑 측 계좌 모달 -->
+                  <div id="groomModal" class="modal">
+                      <div class="modal-content">
+                          <span class="close" onclick="closeModal('groom')">&times;</span>
+                          <h2>신랑 측 계좌번호</h2>
+                          <p id="groomAccountNumber" style="display: inline-block; font-size: 24px; font-weight: 800; margin-right: 10px;">$groomAccountNumber</p>
+                          <button id="copyButton" onclick="copyToClipboard('groom')" style="display: inline-block;">복사</button>
+
+                      </div>
+                  </div>
+                  
+                  <!-- 신부 측 계좌 모달 -->
+                  <div id="brideModal" class="modal">
+                      <div class="modal-content">
+                          <span class="close" onclick="closeModal('bride')">&times;</span>
+                          <h2>신부 측 계좌번호</h2>
+                          <p id="brideAccountNumber" style="display: inline-block; font-size: 24px; font-weight: 800; margin-right: 10px;">$brideAccountNumber</p>
+                          <button id="copyButton" onclick="copyToClipboard('bride')" style="display: inline-block;">복사</button>
+                      </div>
+                  </div>
                   
               </body>
               </html>

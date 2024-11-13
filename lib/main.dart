@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
          // GoRoute(
          //     path: '/',
          //     builder: (context, state) {
-         //       return  HomePage(); // 홈 페이지로 라우팅
+         //       return  InvitationPage(userId:"KYWLzRYrpaW9LqQGucsDHGK8cih1",invitationId: "phNnoBTnm4gIupnfpA6X",); // 홈 페이지로 라우팅
          //     }),
       ],
       errorBuilder: (context, state) => Scaffold(
