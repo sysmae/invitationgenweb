@@ -1,6 +1,6 @@
 {
-    "name": "flutterweb",
-    "short_name": "flutterweb",
+    "name": "모바일 청첩장",
+    "short_name": "모바일 청첩장",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

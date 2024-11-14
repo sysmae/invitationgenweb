@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp.router(
       routerConfig: _router,
-      title: '초대장 생성 앱',
+      title: '모바일 청첩장',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
