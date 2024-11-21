@@ -108,15 +108,22 @@ class HomePage3 extends StatelessWidget {
                       
                           @media (max-width: 1080px) {
                               .intro {
-                                  transform: scale(1.2); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
+                                  transform: scale(1.1); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
                                   transform-origin: top center; /* 축소의 기준점을 위쪽 중앙으로 설정 */
-                                  font-size: 1.2em; /* 기본 글씨 크기도 살짝 조정 가능 */
+                                  font-size: 1.1em; /* 기본 글씨 크기도 살짝 조정 가능 */
                               }
                               
                               .phoneContainer{
-                                  transform: scale(0.9); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
+                                  transform: scale(0.8); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
                                   transform-origin: top center; /* 축소의 기준점을 위쪽 중앙으로 설정 */
-                                  font-size: 0.8em; /* 기본 글씨 크기도 살짝 조정 가능 */
+                                  font-size: 1.5em; /* 기본 글씨 크기도 살짝 조정 가능 */
+                              }
+                              
+                              .accountContainer{
+                                  transform: scale(1.0); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
+                                  transform-origin: top center; /* 축소의 기준점을 위쪽 중앙으로 설정 */
+                                  font-size: 1.5em; /* 기본 글씨 크기도 살짝 조정 가능 */
+                              
                               }
                               
                               
@@ -131,17 +138,17 @@ class HomePage3 extends StatelessWidget {
                         font-family: Yeon Sung;
                         text-align: center;
                         color: #5a4b44;
-                        margin-top: -5vh;
+                        margin-top: -1vh;
                         margin: 0 auto; 
                         max-width: 700px;
                     }
                     .message {
                         font-size: 40px;
-                        margin-bottom: -150px;
+                        margin-bottom: -120px;
                     }
                     .names {
                         font-size: 40px;
-                        margin-top: -180px;
+                        margin-top: -120px;
                     }
                 
                 
@@ -194,11 +201,7 @@ class HomePage3 extends StatelessWidget {
                       box-sizing: border-box;
                   }
                   
-                    @media (min-width: 600px) {
-                    .container {
-                        max-width: 600px;
-                        }
-                     }
+                    
                 
                     .buttons {
                         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -235,7 +238,7 @@ class HomePage3 extends StatelessWidget {
                       display: flex;
                       justify-content: center;
                       align-items: center;
-                      width: 105%;
+                      width: 107%;
                       max-width: 1000px;
                       }
                 
@@ -327,18 +330,19 @@ class HomePage3 extends StatelessWidget {
                       justify-content: center;
                       align-items: center;
                       height: 100vh;
+                     
                   }
                   
                   
                   
                   
                   .calendar-container {
-                      width: 550px;
+                      width: 450px;
                       height: 400px;
                       padding: 20px;
                       background-color: transparent;
                       border: 5px solid transparent;
-                      border-radius: 10px;
+                      border-radius: 20px;
                       text-align: center;
                       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                       
@@ -487,11 +491,11 @@ class HomePage3 extends StatelessWidget {
                 
                 </style>
                 </head>
-                <body background="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/Tem3Bg.png?alt=media&token=9f74e33f-a01a-46d3-8826-b71fb5b715a0" style="height: 4500px;">
+                <body background="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/Tem3Bg.png?alt=media&token=9f74e33f-a01a-46d3-8826-b71fb5b715a0" style="height: 3800px;">
                 <div class="centered-wrapper">
                     <div class="invitation-container">
                         <div class="message">어느 따스한 봄날,<br>저희 결혼해요.</div>
-                        <img src="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/Tem3Img.png?alt=media&token=75bc03a8-0866-46ed-859f-6c64c7ec2290" width="600px">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/invitationgen-7eb56.appspot.com/o/Tem3Img.png?alt=media&token=75bc03a8-0866-46ed-859f-6c64c7ec2290" width="450px">
                         <div class="names">${groomName}와 ${brideName}</div>
                         
                     </div>
@@ -510,7 +514,7 @@ class HomePage3 extends StatelessWidget {
                 <br>여러분들의 가르침을 따라 올바르게 앞을 향해 나아가겠습니다.<br><br>함께하시어 행복을 더해주시길 기대합니다</p>
                   </div>
                 
-                <div style="display: flex; gap: 20%; font-family: 'Yeon Sung'; font-weight: 500; text-align: center; justify-content: center; margin-top: 1%;">
+                <div style="display: flex; gap: 15%; font-family: 'Yeon Sung'; font-weight: 500; text-align: center; justify-content: center; margin-top: 1%;">
                     <div class="phoneContainer">
                         <p style="font-size: 40px;"><span style="color: #8b8b8b;">신랑&nbsp</span> ${groomName}</p> 
                         <div class="groomPhonebutton" onclick="location.href='tel:${bridePhone}'">전화하기</div>
@@ -698,21 +702,21 @@ class HomePage3 extends StatelessWidget {
                 <div style="display: flex; gap: 20%; font-family: Yeon Sung; font-weight: 500; text-align: center; justify-content: center;">
                   <div class="phoneContainer">
                       <p><span style="font-size: 30px; color: #8b8b8b;">아버지&nbsp</span> 
-                         <span style="font-size: 40px; color: #000000;">&nbsp${groomFatherName}</span></p>
+                         <span style="font-size: 35px; color: #000000;">${groomFatherName}</span></p>
                       <div class="groomPhonebutton" onclick="location.href='tel:${groomFatherPhone}'">전화하기</div>
                 
                       <p><span style="font-size: 30px; color: #8b8b8b;">어머니&nbsp</span> 
-                         <span style="font-size: 40px; color: #000000;">&nbsp${groomMotherName}</span></p>
+                         <span style="font-size: 35px; color: #000000;">${groomMotherName}</span></p>
                       <div class="groomPhonebutton" onclick="location.href='tel:${groomMotherPhone}'">전화하기</div>
                   </div>
                 
                   <div class="phoneContainer">
                       <p><span style="font-size: 30px; color: #8b8b8b;">아버지&nbsp</span> 
-                         <span style="font-size: 40px; color: #000000;">&nbsp${brideFatherName}</span></p>
+                         <span style="font-size: 35px; color: #000000;">${brideFatherName}</span></p>
                       <div class="bridePhonebutton" onclick="location.href='tel:${brideFatherPhone}'">전화하기</div>
                 
                       <p><span style="font-size: 30px; color: #8b8b8b;">어머니&nbsp</span> 
-                         <span style="font-size: 40px; color: #000000;">&nbsp${brideMotherName}</span></p>
+                         <span style="font-size: 35px; color: #000000;">${brideMotherName}</span></p>
                       <div class="bridePhonebutton" onclick="location.href='tel:${brideMotherPhone}'">전화하기</div>
                   </div>
                 </div>
@@ -818,7 +822,7 @@ class HomePage3 extends StatelessWidget {
                    <div style="text-align: center; font-family: Yeon Sung; font-size: 35px;">
                       <p style="margin: 0;">전하고싶은 말씀</p>
                       <hr style="width: 30%; margin: 5px auto 0; border: none; border-top: 1px solid #4d4d4d;">
-                      <p style="font-family: Grandiflora One; text-align: center; margin-top: 40px; font-size: 30px; font-weight: 600;">${additionalInstructions}</p>
+                      <p style="font-family: Yeon Sung; text-align: center; margin-top: 40px; font-size: 30px; font-weight: 400;">${additionalInstructions}</p>
                   </div>
                   
                 </body>

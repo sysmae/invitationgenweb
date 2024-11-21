@@ -99,6 +99,29 @@ class HomePage extends StatelessWidget {
 
                   <style>
                   
+                  
+                     .groombride_phoneWrap {
+                      display: flex; 
+                      gap: 20%; 
+                      font-family: 'Grandiflora One'; 
+                      font-weight: 500; 
+                      text-align: center; 
+                      justify-content: center; 
+                      margin-top: 1%;
+
+                      }
+                      
+                      .parent_phoneWrap {
+                      display: flex; 
+                      gap: 20%; 
+                      font-family: 'Grandiflora One'; 
+                      font-weight: 500; 
+                      text-align: center; 
+                      justify-content: center; 
+                      margin: 0 auto; 
+                      
+                      }
+                  
                       
                   
                       
@@ -118,21 +141,49 @@ class HomePage extends StatelessWidget {
                       
                       }
                       
-                          @media (max-width: 1080px) {
+                        @media (max-width: 1080px) {
                               .intro {
-                                  transform: scale(1.2); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
-                                  transform-origin: top center; /* 축소의 기준점을 위쪽 중앙으로 설정 */
-                                  font-size: 1.2em; /* 기본 글씨 크기도 살짝 조정 가능 */
-                              }
-                              
-                              .phoneContainer{
-                                  transform: scale(0.9); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
+                                  transform: scale(1.1); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
                                   transform-origin: top center; /* 축소의 기준점을 위쪽 중앙으로 설정 */
                                   font-size: 0.8em; /* 기본 글씨 크기도 살짝 조정 가능 */
                               }
                               
+                              .phoneContainer{
+                                  transform: scale(0.8); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
+                                  transform-origin: top center; /* 축소의 기준점을 위쪽 중앙으로 설정 */
+                                  font-size: 1.5em; /* 기본 글씨 크기도 살짝 조정 가능 */
+                               
+                              }
+                              .groombride_phoneWrap {
+                                  gap: 10%;
+                              
+                              }
+                              .parent_phoneWrap {
+                               gap: 5%;
+                              
+                              }
+                              .accountContainer{
+                                  transform: scale(1.0); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
+                                  transform-origin: top center; /* 축소의 기준점을 위쪽 중앙으로 설정 */
+                                  font-size: 0.5em; /* 기본 글씨 크기도 살짝 조정 가능 */
+                              
+                              }
+                              
+                              .parent_phoneContainer{
+                                  transform: scale(0.8); /* 박스를 축소하여 글씨 크기와 전체 크기 조정 */
+                                  transform-origin: top center; /* 축소의 기준점을 위쪽 중앙으로 설정 */
+                                  font-size: 0.5em; /* 기본 글씨 크기도 살짝 조정 가능 */
+                              }
+                              
+                              .groombutton {
+                              font-size: 20px
+                              }
+                              .bridebutton {
+                              font-size: 20px
+                              }
                               
                           }
+              
                       
                        
               
@@ -346,7 +397,7 @@ class HomePage extends StatelessWidget {
                     
                     
                     .calendar-container {
-                        width: 550px;
+                        width: 500px;
                         height: 400px;
                         padding: 20px;
                         background-color: white;
@@ -515,23 +566,23 @@ class HomePage extends StatelessWidget {
                   
                       
               
-                  <div style="text-align: center; font-family: 'Grandiflora One'; font-size: 30px; margin-top: 20%; font-weight: 500;">
+                  <div style="text-align: center; font-family: 'Grandiflora One'; font-size: 25px; margin-top: 20%;">
                       <p style="margin: 0;">초대합니다</p>
                       <hr style="width: 20%; margin: 5px auto 0; border: none; border-top: 2px solid #999;">
                     </div>
                     
-                    <div class="intro">
+                    <div class = "intro">
                       <p><br>저희 두 사람의 결혼식에 모시고자 합니다 <br><br> 먼 길 힘드시겠지만, 꼭 참석하여 그동안 쌓아온<br>인생의 경험과 강인함을 저희와 공유해 주시길 부탁드립니다
                   <br>여러분들의 가르침을 따라 올바르게 앞을 향해 나아가겠습니다.<br><br>함께하시어 행복을 더해주시길 기대합니다</p>
                     </div>
               
-                  <div style="display: flex; gap: 20%; font-family: 'Grandiflora One'; font-weight: 500; text-align: center; justify-content: center; margin-top: 1%;">
+                  <div class ="groombride_phoneWrap">
                       <div class="phoneContainer">
-                          <p style="font-size: 40px; font-weight: 600;"><span style="color: #8b8b8b;">신랑&nbsp</span> ${groomName}</p> 
+                          <p><span style="color: #8b8b8b; font-size: 30px; ">신랑&nbsp</span><span style="font-size: 35px; font-weight: 600;">${groomName}</span></p> 
                           <div class="groomPhonebutton" onclick="location.href='tel:${bridePhone}'">전화하기</div>
                       </div>
                       <div class="phoneContainer">
-                          <p style="font-size: 40px; font-weight: 600;"><span style="color: #8b8b8b;">신부&nbsp</span> ${brideName}</p>
+                          <p><span style="color: #8b8b8b; font-size: 30px; ">신랑&nbsp</span><span style="font-size: 35px; font-weight: 600;">${brideName}</span></p>
                           <div class="bridePhonebutton" onclick="location.href='tel:${groomPhone}'">전화하기</div> 
                       </div>
                   </div>
@@ -700,40 +751,40 @@ class HomePage extends StatelessWidget {
                   
                   
               
-                  <div style="text-align: center; font-family: Grandiflora One; font-size: 35px; margin-top: 5%;">
+                  <div style="text-align: center; font-family: Grandiflora One; font-size: 25px; margin-top: 5%;">
                       <p style="margin: 0;">혼주 연락처</p>
                       <hr style="width: 30%; margin: 5px auto 0; border: none; border-top: 1px solid #4d4d4d;">
                   </div>
                   
-                  <div style="display: flex; gap: 40%; font-size: 30px; font-family: Grandiflora One; font-weight: 600; text-align: center; justify-content: center; margin-top: 5%;">
+                  <div style="display: flex; gap: 30%; font-size: 30px; font-family: Grandiflora One; font-weight: 600; text-align: center; justify-content: center; margin-top: 5%;">
                       <p style="color: #87CEEB;">신랑 측</p>
                       <p style="color: #ffdc92;">신부 측</p>
                   </div>
               
-                  <div style="display: flex; gap: 20%; font-family: Grandiflora One; font-weight: 500; text-align: center; justify-content: center;">
-                    <div class="phoneContainer">
-                        <p><span style="font-size: 30px; color: #8b8b8b;">아버지&nbsp</span> 
-                           <span style="font-size: 40px; font-weight: 600; color: #000000;">&nbsp${groomFatherName}</span></p>
+                  <div class="parent_phoneWrap">
+                    <div class="parent_phoneContainer ">
+                        <p><span style="font-size: 25px; color: #8b8b8b;">아버지&nbsp</span> 
+                           <span style="font-size: 35px; color: #000000; font-weight: 600;">${groomFatherName}</span></p>
                         <div class="groomPhonebutton" onclick="location.href='tel:${groomFatherPhone}'">전화하기</div>
                 
-                        <p><span style="font-size: 30px; color: #8b8b8b;">어머니&nbsp</span> 
-                           <span style="font-size: 40px; font-weight: 600; color: #000000;">&nbsp${groomMotherName}</span></p>
+                        <p><span style="font-size: 25px; color: #8b8b8b;">어머니&nbsp</span> 
+                           <span style="font-size: 35px; color: #000000; font-weight: 600;">${groomMotherName}</span></p>
                         <div class="groomPhonebutton" onclick="location.href='tel:${groomMotherPhone}'">전화하기</div>
                     </div>
                 
-                    <div class="phoneContainer">
-                        <p><span style="font-size: 30px; color: #8b8b8b;">아버지&nbsp</span> 
-                           <span style="font-size: 40px; font-weight: 600; color: #000000;">&nbsp${brideFatherName}</span></p>
+                    <div class="parent_phoneContainer">
+                        <p><span style="font-size: 25px; color: #8b8b8b;">아버지&nbsp</span> 
+                           <span style="font-size: 35px; color: #000000; font-weight: 600;">${brideFatherName}</span></p>
                         <div class="bridePhonebutton" onclick="location.href='tel:${brideFatherPhone}'">전화하기</div>
                 
-                        <p><span style="font-size: 30px; color: #8b8b8b;">어머니&nbsp</span> 
-                           <span style="font-size: 40px; font-weight: 600; color: #000000;">&nbsp${brideMotherName}</span></p>
+                        <p><span style="font-size: 25px; color: #8b8b8b;">어머니&nbsp</span> 
+                           <span style="font-size: 35px; color: #000000; font-weight: 600;">${brideMotherName}</span></p>
                         <div class="bridePhonebutton" onclick="location.href='tel:${brideMotherPhone}'">전화하기</div>
                     </div>
                 </div>
 
               
-                  <div style="text-align: center; font-family: Grandiflora One; font-size: 35px; margin-top: 15%;">
+                  <div style="text-align: center; font-family: Grandiflora One; font-size: 25px; margin-top: 15%;">
                       <p style="margin: 0;">오시는 길</p>
                       <hr style="width: 30%; margin: 5px auto 0; border: none; border-top: 1px solid #4d4d4d;">
                   </div>
@@ -789,7 +840,7 @@ class HomePage extends StatelessWidget {
                   
                
                   
-                  <div style="text-align: center; font-family: Grandiflora One; font-size: 35px; margin-top: 10%;">
+                  <div style="text-align: center; font-family: Grandiflora One; font-size: 25px; margin-top: 10%;">
                       <p style="margin: 0;">마음 전하기</p>
                       <hr style="width: 30%; margin: 5px auto 0; border: none; border-top: 1px solid #4d4d4d;">
                       <p style="font-family: Grandiflora One; text-align: center; margin-top: 40px; margin-bottom: 50px; font-size: 30px; font-weight: 600;">축하의 마음을 전해주세요</p>
@@ -797,13 +848,13 @@ class HomePage extends StatelessWidget {
                   
               
                   <div class="accountContainer">
-                      <span style="font-family: Grandiflora One; font-size: 30px; color: #8b8b8b; font-weight: 600;">신랑 측&nbsp;&nbsp;&nbsp;</span>
-                      <div class="groombutton" style="font-family: Grandiflora One; font-weight: 600; cursor:pointer;" onclick="openModal('groom')">축의금으로 마음 전하기</div>
+                      <span style="font-family: Grandiflora One; font-size: 20px; color: #8b8b8b;">신랑 측&nbsp&nbsp&nbsp&nbsp</span>
+                      <div class="groombutton" style="font-family: 'Grandiflora One'; font-weight: 600; cursor:pointer;"; onclick="openModal('groom')">축의금으로 마음 전하기</div>
                   </div>
-                  
-                  <div class="accountContainer" style="margin-top: 20px;">
-                      <span style="font-family: Grandiflora One; font-size: 30px; color: #8b8b8b; font-weight: 600;">신부 측&nbsp;&nbsp;&nbsp;</span>
-                      <div class="bridebutton" style="font-family: Grandiflora One; font-weight: 600; cursor:pointer;" onclick="openModal('bride')">축의금으로 마음 전하기</div>
+              
+                  <div class="accountContainer" style="margin-top: 40px;">
+                      <span style="font-family: Grandiflora One; font-size: 20px; color: #8b8b8b;">신부 측&nbsp&nbsp&nbsp&nbsp</span>
+                      <div class="bridebutton" style="font-family: 'Grandiflora One'; font-weight: 600; cursor:pointer;"; onclick="openModal('bride')">축의금으로 마음 전하기</div> 
                   </div>
                   
 
@@ -837,7 +888,7 @@ class HomePage extends StatelessWidget {
                   <div style="text-align: center; font-family: Grandiflora One; font-size: 35px;">
                       <p style="margin: 0;">전하고싶은 말씀</p>
                       <hr style="width: 30%; margin: 5px auto 0; border: none; border-top: 1px solid #4d4d4d;">
-                      <p style="font-family: Grandiflora One; text-align: center; margin-top: 40px; font-size: 30px; font-weight: 600;">${additionalInstructions}</p>
+                      <p style="font-family: Grandiflora One; text-align: center; margin-top: 40px; font-size: 30px; font-weight: 400;">${additionalInstructions}</p>
                   </div>
 
                   
