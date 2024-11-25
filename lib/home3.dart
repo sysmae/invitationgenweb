@@ -517,11 +517,11 @@ class HomePage3 extends StatelessWidget {
                 <div style="display: flex; gap: 15%; font-family: 'Yeon Sung'; font-weight: 500; text-align: center; justify-content: center; margin-top: 1%;">
                     <div class="phoneContainer">
                         <p style="font-size: 40px;"><span style="color: #8b8b8b;">신랑&nbsp</span> ${groomName}</p> 
-                        <div class="groomPhonebutton" onclick="location.href='tel:${bridePhone}'">전화하기</div>
+                        <div class="groomPhonebutton" onclick="location.href='tel:${groomPhone}'">전화하기</div>
                     </div>
                     <div class="phoneContainer">
                         <p style="font-size: 40px;"><span style="color: #8b8b8b;">신부&nbsp</span> ${brideName}</p>
-                        <div class="bridePhonebutton" onclick="location.href='tel:${groomPhone}'">전화하기</div> 
+                        <div class="bridePhonebutton" onclick="location.href='tel:${bridePhone}'">전화하기</div> 
                     </div>
                 </div>
                 

@@ -552,11 +552,11 @@ class HomePage2 extends StatelessWidget {
                   <div class ="groombride_phoneWrap">
                       <div class="phoneContainer">
                           <p><span style="color: #8b8b8b; font-size: 30px; ">신랑&nbsp</span><span style="font-size: 35px;">${groomName}</span></p> 
-                          <div class="groomPhonebutton" onclick="location.href='tel:${bridePhone}'">전화하기</div>
+                          <div class="groomPhonebutton" onclick="location.href='tel:${groomPhone}'">전화하기</div>
                       </div>
                       <div class="phoneContainer">
-                          <p><span style="color: #8b8b8b; font-size: 30px; ">신랑&nbsp</span><span style="font-size: 35px;">${brideName}</span></p>
-                          <div class="bridePhonebutton" onclick="location.href='tel:${groomPhone}'">전화하기</div> 
+                          <p><span style="color: #8b8b8b; font-size: 30px; ">신부&nbsp</span><span style="font-size: 35px;">${brideName}</span></p>
+                          <div class="bridePhonebutton" onclick="location.href='tel:${bridePhone}'">전화하기</div> 
                       </div>
                   </div>
                   
